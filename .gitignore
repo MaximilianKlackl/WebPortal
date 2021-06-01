@@ -1,22 +1,4 @@
 
-# exclude everything
-restricted/*
-restricted/uploads/*
-
-# exception to the rule
-!restricted/.gitkeep 
-!restricted/uploads
-!restricted/uploads/.gitkeep 
-
-# exclude everything
-public/*
-public/uploads/*
-
-# exception to the rule
-!public/.gitkeep 
-!public/uploads
-!public/uploads/.gitkeep 
-
 
 node_modules
 
