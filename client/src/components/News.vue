@@ -1,35 +1,63 @@
 <template>
-    <div class="m-auto overflow-hidden rounded-lg shadow-lg cursor-pointer h-90 w-60 md:w-80">
-    <a href="#" class="block w-full h-full">
-        <img alt="blog photo" src="/images/blog/1.jpg" class="object-cover w-full max-h-40"/>
-        <div class="w-full p-4 bg-white dark:bg-gray-800">
-            <p class="font-medium text-indigo-500 text-md">
-                Article
-            </p>
-            <p class="mb-2 text-xl font-medium text-gray-800 dark:text-white">
-                Supercharged !
-            </p>
-            <p class="font-light text-gray-400 dark:text-gray-300 text-md">
-                The new supercar is here, 543 cv and 140 000$. This is best racing GT about 7 years on...
-            </p>
-            <div class="flex flex-wrap items-center mt-4 justify-starts">
-                <div class="text-xs mr-2 py-1.5 px-4 text-gray-600 bg-blue-100 rounded-2xl">
-                    #Car
-                </div>
-                <div class="text-xs mr-2 py-1.5 px-4 text-gray-600 bg-blue-100 rounded-2xl">
-                    #Money
-                </div>
+    <div class="h-4/5">
+        <div v-if="isLoaded">
+            <h2 class="mt-10 ml-10 text-4xl font-bold text-center lg:text-left">
+                Neuigkeiten 🦝
+            </h2>
+            <div
+                class="flex flex-row flex-wrap items-center justify-center m-5"
+            >
+                <NewsCard
+                    v-for="(item, index) in data"
+                    v-bind:data="item"
+                    v-bind:index="index"
+                    v-bind:key="item._id"
+                >
+                </NewsCard>
             </div>
         </div>
-    </a>
-</div>
+        <div v-if="!isLoaded">
+            <div class="flex flex-row items-center justify-center mt-20">
+                <div
+                    class="w-5 h-5 bg-gray-300 rounded-full -top-5 animate-ping"
+                ></div>
+                <div
+                    class="w-5 h-5 bg-gray-300 rounded-full animate-ping"
+                ></div>
+                <div
+                    class="w-5 h-5 bg-gray-300 rounded-full animate-ping"
+                ></div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
+import NewsCard from "./NewsCard.vue";
 
+export default {
+    components: {
+        NewsCard,
+    },
+    data() {
+        return {
+            data: null,
+            isLoaded: false,
+        };
+    },
+    created() {
+        document.title = "Learn - News";
+
+        this.axios
+            .get("/api/news")
+            .then((response) => {
+                this.data = response.data;
+                this.isLoaded = true;
+                //console.log(this.data)
+            })
+            .catch((err) => console.log(err));
+    },
+};
 </script>
 
-<style>
-
-
-</style>
+<style></style>

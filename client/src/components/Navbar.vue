@@ -1,9 +1,9 @@
 <template>
     <header class="font-medium text-gray-700">
         <div class="container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row">
-            <a class="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0">
+            <router-link to="/home" class="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0">
             <span class="ml-3 text-xl font-bold text-blue-600">Learn</span>
-            </a>
+            </router-link>
             <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
                 <router-link to="/home" class="mr-5 hover:text-gray-900"> Home </router-link>
                 <router-link to="/news" class="mr-5 hover:text-gray-900"> News </router-link>

@@ -12,10 +12,13 @@ const router = createRouter({
     routes
 });
 
-axios.defaults.baseURL = "http://localhost:1000";
+const API_URL = "http://localhost:1000"
+axios.defaults.baseURL = API_URL;
 
 const app = createApp(App)
 app.use(router);
 app.use(VueAxios, axios) 
 app.mount('#app')
+
+app.config.globalProperties.$API_URL = API_URL;
 

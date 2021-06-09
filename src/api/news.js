@@ -11,7 +11,7 @@ const schema = Joi.object({
     title: Joi.string().trim().required(),
     preview_text: Joi.string().trim().required(),
     text: Joi.string().trim().required(),
-    tags: Joi.string().trim().required(),
+    date: Joi.string().trim().required(),
     image_url: Joi.string()
 })
 
