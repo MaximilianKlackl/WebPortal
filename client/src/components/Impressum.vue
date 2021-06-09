@@ -62,41 +62,6 @@
             verpflichtet sind, an Streitbeilegungsverfahren vor einer
             Verbraucherschlichtungsstelle teilzunehmen.
         </p>
-        <h2 class="mt-5 text-2xl font-bold">Bildernachweis</h2>
-        <p>
-            Die Bilder, Fotos und Grafiken auf dieser Webseite sind
-            urheberrechtlich geschützt.
-        </p>
-        <p>
-            Die Bilderrechte liegen bei den folgenden Fotografen und
-            Unternehmen:
-        </p>
-        <ul class="mt-5">
-            <li class="mt-5 text-2xl font-bold">Fotograf Mustermann</li>
-        </ul>
-        <h2 class="mt-5">Haftung für Inhalte dieser Website</h2>
-        <p>
-            Wir entwickeln die Inhalte dieser Webseite ständig weiter und
-            bemühen uns korrekte und aktuelle Informationen bereitzustellen.
-             Leider können wir keine Haftung für die Korrektheit aller Inhalte
-            auf dieser Website übernehmen, speziell für jene, die seitens
-            Dritter bereitgestellt wurden. Als Diensteanbieter sind wir nicht
-            verpflichtet, die von ihnen übermittelten oder gespeicherten
-            Informationen zu überwachen oder nach Umständen zu forschen, die auf
-            eine rechtswidrige Tätigkeit hinweisen.
-        </p>
-        <p>
-            Unsere Verpflichtungen zur Entfernung von Informationen oder zur
-            Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen
-            aufgrund von gerichtlichen oder behördlichen Anordnungen bleiben
-            auch im Falle unserer Nichtverantwortlichkeit davon unberührt.
-        </p>
-        <p>
-            Sollten Ihnen problematische oder rechtswidrige Inhalte auffallen,
-            bitte wir Sie uns umgehend zu kontaktieren, damit wir die
-            rechtswidrigen Inhalte entfernen können. Sie finden die Kontaktdaten
-            im Impressum.
-        </p>
         <h2 class="mt-5 text-2xl font-bold">
             Haftung für Links auf dieser Webseite
         </h2>
