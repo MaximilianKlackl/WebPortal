@@ -54,11 +54,48 @@
                                 >Downloadbereich</router-link
                             >
                         </li>
+                    </nav>
+                </div>
+                <div class="w-full px-4 lg:w-1/4 md:w-1/2">
+                    <h2
+                        class="mb-3 text-sm font-medium tracking-widest text-gray-900  title-font"
+                    >
+                        &nbsp
+                    </h2>
+                    <nav class="mb-10 list-none">
+                        <li>
+                            <router-link
+                                to="/kundenbewertungen"
+                                class="text-gray-600 hover:text-gray-800"
+                                >Kundenbewertungen</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link
+                                to="/Sitemap"
+                                class="text-gray-600 hover:text-gray-800"
+                                >Sitemap</router-link
+                            >
+                        </li>
                         <li>
                             <router-link
                                 to="/informationsmaterial"
                                 class="text-gray-600 hover:text-gray-800"
                                 >Informationsmaterial</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link
+                                to="/informationsmaterial"
+                                class="text-gray-600 hover:text-gray-800"
+                                >Informationsmaterial</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link
+                                to="/Downloadbreich"
+                                class="text-gray-600 hover:text-gray-800"
+                                >Downloadbereich</router-link
                             >
                         </li>
                         <li>
@@ -96,30 +133,6 @@
                                 to="/datenschutzerklaerung"
                                 class="text-gray-600 hover:text-gray-800"
                                 >Cookies Policy</router-link
-                            >
-                        </li>
-                    </nav>
-                </div>
-                <div class="w-full px-4 lg:w-1/4 md:w-1/2">
-                    <h2
-                        class="mb-3 text-sm font-medium tracking-widest text-gray-900  title-font"
-                    >
-                        NACHHILFE FÄCHER
-                    </h2>
-                    <nav class="mb-10 list-none">
-                        <li>
-                            <span class="text-gray-600 hover:text-gray-800"
-                                >Software Entwicklung</span
-                            >
-                        </li>
-                        <li>
-                            <span class="text-gray-600 hover:text-gray-800"
-                                >Medientechnik</span
-                            >
-                        </li>
-                        <li>
-                            <span class="text-gray-600 hover:text-gray-800"
-                                >Datenbanken</span
                             >
                         </li>
                     </nav>

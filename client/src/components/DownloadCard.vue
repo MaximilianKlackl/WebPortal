@@ -1,7 +1,7 @@
 <template>
     <a v-bind:href="this.$API_URL + '/' + data.url" v-bind:download="data.name"
         ><div
-            class="p-2 text-lg font-medium border-4 border-blue-200 rounded-md cursor-pointer  bg-blue-50"
+            class="p-3 pl-5 pr-5 text-lg font-medium border-2 border-gray-100 rounded-md shadow-md cursor-pointer "
         >
             <span> {{ data.name }} 📄</span>
         </div>

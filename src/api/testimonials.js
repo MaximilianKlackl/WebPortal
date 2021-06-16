@@ -1,93 +1,112 @@
 const express = require("express");
 const router = express.Router();
 const Joi = require("joi");
-const { verifyToken, adminRequired } = require("../middlewares/auth.middleware");
+const {
+    verifyToken,
+    adminRequired,
+} = require("../middlewares/auth.middleware");
+const { uploadPublic } = require("../middlewares/upload.middleware");
 
-const db = require('monk')(process.env.MONGODB_URI)
+const db = require("monk")(process.env.MONGODB_URI);
 const collection = db.get("testimonials");
 
 const schema = Joi.object({
     from: Joi.string().trim().required(),
     text: Joi.string().trim().required(),
     image_url: Joi.string(),
-})
+});
 
 router.get("/", async (req, res, next) => {
-    
-    try{
+    try {
         const items = await collection.find();
 
-        if(!items) return next();
+        if (!items) return next();
 
         return res.json(items);
-
-    }catch(error){
+    } catch (error) {
         next(error);
     }
 });
 
 router.get("/:id", async (req, res, next) => {
-
-    try{
+    try {
         const { id } = req.params;
         const item = await collection.findOne({
             _id: id,
         });
 
-        if(!item) return next();
+        if (!item) return next();
         return res.json(item);
-
-    }catch(error){
+    } catch (error) {
         next(error);
     }
 });
 
-router.post("/", verifyToken , adminRequired,async (req, res, next) => {
-    
-    try{
-        console.log(req.body);
-        const value = await schema.validateAsync(req.body);
-        const inserted = await collection.insert(value);
-        res.json(inserted);
-    }catch(error){
-        next(error);
+router.post(
+    "/",
+    verifyToken,
+    adminRequired,
+    uploadPublic.single("file"),
+    async (req, res, next) => {
+        if (req.file) {
+            req.body.image_url = "public/uploads/" + req.file.filename;
+        }
+
+        try {
+            console.log(req.body);
+            const value = await schema.validateAsync(req.body);
+            const inserted = await collection.insert(value);
+            res.json(inserted);
+        } catch (error) {
+            next(error);
+        }
     }
-});
+);
 
-router.put("/:id", verifyToken, adminRequired, async(req, res, next) => {
-    
-    try{
-        const { id } = req.params;
-        const value = await schema.validateAsync(req.body);
+router.put(
+    "/:id",
+    verifyToken,
+    adminRequired,
+    uploadPublic.single("file"),
+    async (req, res, next) => {
+        if (req.file) {
+            req.body.image_url = "public/uploads/" + req.file.filename;
+        }
 
-        const item = await collection.findOne({
-            _id: id,
-        });
+        try {
+            const { id } = req.params;
+            const value = await schema.validateAsync(req.body);
 
-        const updated = await collection.update({
-            _id: id
-        }, value);
+            const item = await collection.findOne({
+                _id: id,
+            });
 
-        res.json(updated);
-    }catch(error){
-        next(error);
+            const updated = await collection.update(
+                {
+                    _id: id,
+                },
+                value
+            );
+
+            res.json(updated);
+        } catch (error) {
+            next(error);
+        }
     }
-})
+);
 
-router.delete(":id", verifyToken,adminRequired, async(req, res, next) => {
-
-    try{
+router.delete(":id", verifyToken, adminRequired, async (req, res, next) => {
+    try {
         const { id } = req.params;
         await collection.delete({ _id: id });
 
         res.status(200);
         res.json({
-            message: "Sucess"
-        })
-
-    }catch(error){
+            message: "Sucess",
+        });
+    } catch (error) {
         next(error);
     }
-})
+});
 
 module.exports = router;

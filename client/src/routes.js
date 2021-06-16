@@ -6,11 +6,22 @@ import PageNotFound from "./components/PageNotFound.vue";
 import Impressum from "./components/Impressum.vue";
 import PrivacyPolicy from "./components/PrivacyPolicy.vue";
 import informationsmaterial from "./components/Informationsmaterial.vue";
+import Sitemap from "./components/Sitemap.vue";
+import Testimonials from "./components/Testimonials.vue";
+import Downloadbereich from "./components/Downloadbereich.vue";
 
 export const routes = [
     {
         path: "/",
         redirect: "/home",
+    },
+    {
+        path: "/downloadbereich",
+        component: Downloadbereich,
+    },
+    {
+        path: "/kundenbewertungen",
+        component: Testimonials,
     },
     {
         path: "/home",
@@ -23,6 +34,10 @@ export const routes = [
     {
         path: "/impressum",
         component: Impressum,
+    },
+    {
+        path: "/sitemap",
+        component: Sitemap,
     },
     {
         path: "/informationsmaterial",

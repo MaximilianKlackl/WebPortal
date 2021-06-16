@@ -5,6 +5,7 @@ const {
     verifyToken,
     adminRequired,
 } = require("../middlewares/auth.middleware");
+const { uploadPublic } = require("../middlewares/upload.middleware");
 
 const db = require("monk")(process.env.MONGODB_URI);
 const collection = db.get("kebab");
@@ -41,38 +42,57 @@ router.get("/:id", async (req, res, next) => {
     }
 });
 
-router.post("/", verifyToken, adminRequired, async (req, res, next) => {
-    try {
-        console.log(req.body);
-        const value = await schema.validateAsync(req.body);
-        const inserted = await collection.insert(value);
-        res.json(inserted);
-    } catch (error) {
-        next(error);
+router.post(
+    "/",
+    verifyToken,
+    adminRequired,
+    uploadPublic.single("file"),
+    async (req, res, next) => {
+        if (req.file) {
+            req.body.url = "public/uploads/" + req.file.filename;
+        }
+
+        try {
+            console.log(req.body);
+            const value = await schema.validateAsync(req.body);
+            const inserted = await collection.insert(value);
+            res.json(inserted);
+        } catch (error) {
+            next(error);
+        }
     }
-});
+);
 
-router.put("/:id", verifyToken, adminRequired, async (req, res, next) => {
-    try {
-        const { id } = req.params;
-        const value = await schema.validateAsync(req.body);
+router.put(
+    "/:id",
+    verifyToken,
+    adminRequired,
+    uploadPublic.single("file"),
+    async (req, res, next) => {
+        if (req.file) {
+            req.body.url = "public/uploads/" + req.file.filename;
+        }
+        try {
+            const { id } = req.params;
+            const value = await schema.validateAsync(req.body);
 
-        const item = await collection.findOne({
-            _id: id,
-        });
-
-        const updated = await collection.update(
-            {
+            const item = await collection.findOne({
                 _id: id,
-            },
-            value
-        );
+            });
 
-        res.json(updated);
-    } catch (error) {
-        next(error);
+            const updated = await collection.update(
+                {
+                    _id: id,
+                },
+                value
+            );
+
+            res.json(updated);
+        } catch (error) {
+            next(error);
+        }
     }
-});
+);
 
 router.delete(":id", verifyToken, adminRequired, async (req, res, next) => {
     try {
